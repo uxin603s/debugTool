@@ -23,6 +23,7 @@ class TT{
 		return $time;
 	}
 	public static function show($show_type=0){
+		self::flag();
 		$noname_time=false;
 		$name_time=false;
 		if(count(self::$flas_arr)>1)
@@ -50,8 +51,10 @@ class TT{
 			}
 			echo "</pre>";
 		}else if($show_type==2){	
-			echo "<script>console.log('noname_time',".json_encode($noname_time).")</script>";
-			echo "<script>console.log('name_time',".json_encode($name_time).")</script>";
+			if($noname_time)
+				echo "<script>console.log('noname_time',".json_encode($noname_time).")</script>";
+			if($name_time)
+				echo "<script>console.log('name_time',".json_encode($name_time).")</script>";
 			foreach(self::$message_arr as $val){
 				if(is_array($val)){
 					$json=json_encode($val);
